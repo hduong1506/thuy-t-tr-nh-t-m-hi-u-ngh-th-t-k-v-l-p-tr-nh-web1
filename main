@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nghề Thiết Kế Và Lập Trình Web </title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f4f4f4;
+      color: #222;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #1f3c5a;
+      color: white;
+      padding: 20px 60px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 25px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ffd166;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 60px;
+      gap: 50px;
+      background: linear-gradient(to right, #e8eef5, #ffffff);
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 320px;
+    }
+
+    .hero-text h1 {
+      font-size: 60px;
+      color: #1f3c5a;
+      margin-bottom: 25px;
+    }
+
+    .hero-text p {
+      font-size: 20px;
+      color: #555;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 28px;
+      background: #1f3c5a;
+      color: white;
+      border-radius: 10px;
+      text-decoration: none;
+      margin-right: 15px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      background: #2f567e;
+    }
+
+    .portfolio {
+      flex: 1;
+      min-width: 320px;
+      background: white;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .portfolio-top {
+      background: #1f3c5a;
+      color: white;
+      padding: 20px;
+    }
+
+    .portfolio-body {
+      padding: 30px;
+    }
+
+    .project {
+      background: #f5f5f5;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 20px;
+      transition: 0.4s;
+      cursor: pointer;
+      border: 2px solid transparent;
+      overflow: hidden;
+    }
+
+    .project:hover {
+      transform: translateY(-5px) scale(1.02);
+      background: #e9eef3;
+      border-color: #1f3c5a;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    }
+
+    .project-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.5s;
+      color: #555;
+      margin-top: 0;
+    }
+
+    .project.active .project-content {
+      max-height: 300px;
+      margin-top: 15px;
+    }
+
+    section {
+      padding: 80px 60px;
+    }
+
+    .title {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .title h2 {
+      font-size: 45px;
+      color: #1f3c5a;
+      margin-bottom: 15px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      transition: 0.4s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      border: 2px solid transparent;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 5px;
+      left: 0;
+      top: 0;
+      background: linear-gradient(to right,#1f3c5a,#5b86b1);
+    }
+
+    .card:hover {
+      transform: translateY(-12px) scale(1.02);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+      border-color: #1f3c5a;
+    }
+
+    .card-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: 0.5s;
+      margin-top: 0;
+      color: #555;
+    }
+
+    .card.active .card-content {
+      max-height: 400px;
+      margin-top: 20px;
+    }
+
+    .card h3 {
+      color: #1f3c5a;
+      margin-bottom: 15px;
+    }
+
+    .timeline {
+      border-left: 5px solid #1f3c5a;
+      padding-left: 30px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .timeline-item {
+      margin-bottom: 40px;
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    }
+
+    footer {
+      background: #1f3c5a;
+      color: white;
+      text-align: center;
+      padding: 40px;
+      margin-top: 50px;
+    }
+
+    @keyframes load1 {
+      from { width:0; }
+      to { width:95%; }
+    }
+
+    @keyframes load2 {
+      from { width:0; }
+      to { width:90%; }
+    }
+
+    @keyframes load3 {
+      from { width:0; }
+      to { width:85%; }
+    }
+
+    @keyframes load4 {
+      from { width:0; }
+      to { width:80%; }
+    }
+
+    @keyframes popup {
+      from {
+        transform: scale(0.7);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+      to { width:80%; }
+    }
+
+    @media(max-width:768px){
+      .hero-text h1 {
+        font-size: 42px;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+    <h1>THUYẾT TRÌNH <h1></h1>
+</header>
+  <header>
+    <nav>
+      <h2>NGHỀ THIẾT KẾ  LẬP TRÌNH WEB</h2>
+
+      <ul>
+        <li><a href="#gioithieu">Giới thiệu</a></li>
+        <li><a href="#chuyenmon">Chuyên môn</a></li>
+        <li><a href="#daotao">Đào tạo</a></li>
+        <li><a href="#cohoi">Cơ hội nghề nghiệp</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>NGHỀ THIẾT KẾ VÀ LẬP TRÌNH WEB</h1>
+
+      <p>
+        Thiết kế và lập trình web là ngành nghề thuộc lĩnh vực công nghệ thông tin,
+        chuyên xây dựng và phát triển website phục vụ học tập, kinh doanh,
+        giải trí và truyền thông.
+      </p>
+
+      <a href="#gioithieu" class="btn">Khám phá nghề</a>
+      <a href="#daotao" class="btn">Thông tin đào tạo</a>
+    </div>
+
+    <div class="portfolio">
+      <div class="portfolio-top">
+        <h2>Phương tiện lao động</h2>
+      </div>
+
+      <div class="portfolio-body">
+        <div class="project" onclick="toggleProject(this)">
+          <h3>🛒 Website bán hàng</h3>
+          <p>Thiết kế website thương mại điện tử hiện đại.</p>
+
+          <div class="project-content">
+            <p>
+              Website hỗ trợ mua sắm trực tuyến, quản lý sản phẩm,
+              giỏ hàng và thanh toán online. Giao diện được tối ưu cho điện thoại
+              và máy tính giúp người dùng dễ sử dụng hơn.
+            </p>
+          </div>
+        </div>
+
+        <div class="project" onclick="toggleProject(this)">
+          <h3>🏢 Website doanh nghiệp</h3>
+          <p>Giới thiệu công ty với giao diện chuyên nghiệp.</p>
+
+          <div class="project-content">
+            <p>
+              Website giúp doanh nghiệp quảng bá thương hiệu,
+              giới thiệu dịch vụ, thông tin liên hệ và tạo uy tín với khách hàng.
+              Thiết kế tập trung vào sự chuyên nghiệp và dễ nhìn.
+            </p>
+          </div>
+        </div>
+
+        <div class="project" onclick="toggleProject(this)">
+          <h3>💻 Kỹ năng chuyên môn</h3>
+          <p>HTML, CSS, JavaScript, ReactJS và UI/UX.</p>
+
+          <div class="project-content">
+            <p>
+              Người làm nghề cần biết thiết kế giao diện,
+              lập trình chức năng website, tối ưu trải nghiệm người dùng
+              và cập nhật các công nghệ mới liên tục.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gioithieu">
+    <div class="title">
+      <h2>Giới Thiệu Nghề</h2>
+      <p>Tổng quan chi tiết về nghề thiết kế và lập trình web</p>
+    </div>
+
+    <div style="max-width:1200px;margin:auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:35px;align-items:center;">
+
+      <div>
+        <img 
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop" 
+          style="width:100%;border-radius:25px;box-shadow:0 15px 35px rgba(0,0,0,0.12);height:100%;object-fit:cover;"
+        >
+      </div>
+
+      <div>
+        <h2 style="font-size:42px;color:#1f3c5a;margin-bottom:25px;line-height:1.3;">
+          Nghề Thiết Kế Và
+          <br>
+          Lập Trình Web Là Gì?
+        </h2>
+
+        <p style="font-size:18px;color:#555;line-height:2;margin-bottom:20px;">
+          Thiết kế và lập trình web là ngành nghề thuộc lĩnh vực công nghệ thông tin,
+          chuyên xây dựng và phát triển các website phục vụ cho doanh nghiệp,
+          tổ chức và cá nhân trên Internet.
+        </p>
+
+        <p style="font-size:18px;color:#555;line-height:2;margin-bottom:20px;">
+          Người làm nghề sẽ kết hợp giữa tư duy thẩm mỹ,
+          khả năng sáng tạo và kỹ năng lập trình để tạo ra những website đẹp mắt,
+          hiện đại và hoạt động ổn định.
+        </p>
+
+        <p style="font-size:18px;color:#555;line-height:2;">
+          Đây là một trong những ngành nghề phát triển mạnh nhất hiện nay
+          nhờ sự bùng nổ của Internet, thương mại điện tử và chuyển đổi số.
+          Nghề này mang lại nhiều cơ hội việc làm với mức thu nhập hấp dẫn.
+        </p>
+      </div>
+    <h2>Đặc điểm của nghề</h2>
+    </div>
+
+    <div class="cards" style="margin-top:70px;">
+      <div class="card" onclick="toggleCard(this)">
+        <div style="font-size:50px;margin-bottom:20px;">🎨</div>
+        <h3>Thiết kế giao diện</h3>
+
+        <p>
+          Thiết kế bố cục website đẹp mắt và hiện đại.
+        </p>
+
+        <div class="card-content">
+          <p style="line-height:1.9;">
+            Người thiết kế giao diện sẽ sử dụng các công cụ như Figma,
+            Photoshop và cavan để tạo bố cục website.
+            Công việc bao gồm lựa chọn màu sắc,
+            font chữ, hình ảnh và tối ưu trải nghiệm người dùng trên điện thoại và máy tính.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div style="font-size:50px;margin-bottom:20px;">⚙️</div>
+        <h3>Lập trình chức năng</h3>
+
+        <p>
+          Xây dựng các tính năng hoạt động cho website.
+        </p>
+
+        <div class="card-content">
+          <p style="line-height:1.9;">
+            Lập trình viên web sẽ sử dụng HTML, CSS, JavaScript,
+            ReactJS hoặc NodeJS để xây dựng chức năng cho website.
+            Ví dụ như đăng nhập tài khoản,
+            quản lý dữ liệu, thanh toán online và tương tác với người dùng.
+          </p>
+        </div>
+      </div>
+
+      <div class="card" onclick="toggleCard(this)">
+        <div style="font-size:50px;margin-bottom:20px;">🌐</div>
+        <h3>Triển khai website</h3>
+
+        <p>
+          Đưa website hoạt động trên Internet.
+        </p>
+
+        <div class="card-content">
+          <p style="line-height:1.9;">
+            Sau khi hoàn thành website,
+            lập trình viên sẽ triển khai website lên hosting,
+            quản lý domain, tối ưu tốc độ tải trang và bảo mật hệ thống.
+            Đây là bước giúp website có thể hoạt động thực tế.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:80px;background:white;padding:60px;border-radius:30px;box-shadow:0 15px 35px rgba(0,0,0,0.08);position:relative;overflow:hidden;">
+
+      <div style="position:absolute;width:300px;height:300px;background:#dce8f2;border-radius:50%;top:-100px;right:-100px;opacity:0.5;"></div>
+
+      <h2 style="text-align:center;font-size:40px;color:#1f3c5a;margin-bottom:50px;position:relative;z-index:2;">
+        Công Cụ Và Kỹ Năng Cần Có
+      </h2>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px;position:relative;z-index:2;">
+
+        <div class="card" style="background:linear-gradient(135deg,#fff7ed,#ffffff);">
+          <h3 style="color:#ff6b00;">HTML</h3>
+          <p>Tạo cấu trúc,khung sườn cho website.</p>
+
+          <div style="margin-top:20px;height:12px;background:#eee;border-radius:20px;overflow:hidden;">
+            <div style="width:95%;height:100%;background:#ff6b00;animation:load1 2s;"></div>
+          </div>
+        </div>
+
+        <div class="card" style="background:linear-gradient(135deg,#eef6ff,#ffffff);">
+          <h3 style="color:#2965f1;">CSS</h3>
+          <p>Thiết kế giao diện và hiệu ứng website.</p>
+
+          <div style="margin-top:20px;height:12px;background:#eee;border-radius:20px;overflow:hidden;">
+            <div style="width:90%;height:100%;background:#2965f1;animation:load2 2s;"></div>
+          </div>
+        </div>
+
+        <div class="card" style="background:linear-gradient(135deg,#fffbe6,#ffffff);">
+          <h3 style="color:#d4a000;">JavaScript</h3>
+          <p>Tạo chức năng và tương tác động.</p>
+
+          <div style="margin-top:20px;height:12px;background:#eee;border-radius:20px;overflow:hidden;">
+            <div style="width:85%;height:100%;background:#f0c000;animation:load3 2s;"></div>
+          </div>
+        </div>
+
+        <div class="card" style="background:linear-gradient(135deg,#eefcff,#ffffff);">
+          <h3 style="color:#00bcd4;">ReactJS</h3>
+          <p>Xây dựng website hiện đại và chuyên nghiệp.</p>
+
+          <div style="margin-top:20px;height:12px;background:#eee;border-radius:20px;overflow:hidden;">
+            <div style="width:80%;height:100%;background:#00bcd4;animation:load4 2s;"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="chuyenmon">
+    <div class="title">
+      <h2>Chuyên Môn Nghề Nghiệp</h2>
+      <p>Các vị trí công việc phổ biến trong ngành</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Frontend Developer</h3>
+        <p>Thiết kế giao diện website bằng HTML, CSS và JavaScript.</p>
+      </div>
+
+      <div class="card">
+        <h3>Backend Developer</h3>
+        <p>Xây dựng hệ thống máy chủ và xử lý dữ liệu.</p>
+      </div>
+
+      <div class="card">
+        <h3>UI/UX Designer</h3>
+        <p>Thiết kế giao diện và trải nghiệm người dùng.</p>
+      </div>
+
+      <div class="card">
+        <h3>Full Stack Developer</h3>
+        <p>Kết hợp cả frontend và backend để phát triển website hoàn chỉnh.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="daotao">
+    <div class="title">
+      <h2>Đào Tạo Và Tuyển Sinh</h2>
+      <p>Các trường đào tạo uy tín hiện nay</p>
+    </div>
+
+    <div class="cards">
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1200&auto=format&fit=crop" style="width:100%;height:180px;object-fit:cover;border-radius:15px;margin-bottom:20px;">
+        <h3>Đại học FPT</h3>
+      </div>
+
+      <div class="card">
+        <img src="https://share.google/SNt0x2mG0im1nST6N" style="width:100%;height:180px;object-fit:cover;border-radius:15px;margin-bottom:20px;">
+        <h3>Đại học Công nghệ Thông tin</h3>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1200&auto=format&fit=crop" style="width:100%;height:180px;object-fit:cover;border-radius:15px;margin-bottom:20px;">
+        <h3>Đại học Bách Khoa</h3>
+      </div>
+
+      <div class="card">
+        <img src="https://images.unsplash.com/photo-1513258496099-48168024aec0?q=80&w=1200&auto=format&fit=crop" style="width:100%;height:180px;object-fit:cover;border-radius:15px;margin-bottom:20px;">
+        <h3>Arena Multimedia</h3>
+      </div>
+    </div>
+  </section>
+
+  <section id="cohoi">
+    <div class="title">
+      <h2>Cơ Hội Nghề Nghiệp</h2>
+      <p>Môi trường làm việc và thu nhập</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h3>Nhu cầu tuyển dụng cao</h3>
+        <p>Ngành công nghệ thông tin đang phát triển mạnh và cần nhiều nhân lực.</p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Mức lương hấp dẫn</h3>
+        <p>Thu nhập trung bình từ 10 đến hơn 50 triệu đồng mỗi tháng.</p>
+      </div>
+
+      <div class="timeline-item">
+        <h3>Cơ hội phát triển</h3>
+        <p>Có thể trở thành trưởng nhóm, quản lý dự án hoặc freelancer quốc tế.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding:100px 30px 60px;background:linear-gradient(135deg,#1f3c5a,#355c7d);color:white;text-align:center;position:relative;overflow:hidden;">
+
+    <div style="position:absolute;width:400px;height:400px;background:rgba(255,255,255,0.05);border-radius:50%;top:-150px;left:-100px;"></div>
+    <div style="position:absolute;width:300px;height:300px;background:rgba(255,255,255,0.05);border-radius:50%;bottom:-120px;right:-80px;"></div>
+
+    <h1 style="font-size:60px;margin-bottom:30px;line-height:1.4;text-shadow:0 5px 20px rgba(0,0,0,0.3);position:relative;z-index:2;animation:float 4s ease-in-out infinite;">
+      CẢM ƠN CÔ VÀ CÁC BẠN
+      <br>
+      ĐÃ LẮNG NGHE
+      <br>
+      BÀI THUYẾT TRÌNH CỦA NHÓM EM
+    </h1>
+
+    <p style="max-width:900px;margin:auto;font-size:20px;line-height:2;color:#dce8f2;position:relative;z-index:2;">
+      thank's for listening ><
+    </p>
+
+    <button onclick="showVipPopup()" style="margin-top:50px;padding:18px 40px;border:none;border-radius:16px;background:white;color:#1f3c5a;font-size:20px;font-weight:bold;cursor:pointer;transition:0.4s;box-shadow:0 10px 30px rgba(0,0,0,0.2);position:relative;z-index:2;">
+      ➕ Thêm
+    </button>
+
+  </section>
+
+  <div id="vipPopup" style="position:fixed;inset:0;background:rgba(0,0,0,0.7);display:none;justify-content:center;align-items:center;z-index:9999;backdrop-filter:blur(5px);">
+
+    <div style="background:white;padding:50px;border-radius:30px;max-width:600px;width:90%;text-align:center;animation:popup 0.5s;position:relative;overflow:hidden;">
+
+      <div style="position:absolute;width:200px;height:200px;background:#dce8f2;border-radius:50%;top:-80px;right:-80px;"></div>
+
+      <h2 style="font-size:42px;color:#1f3c5a;margin-bottom:25px;position:relative;z-index:2;">
+        🚫 Đã đạt giới hạn
+      </h2>
+
+      <p style="font-size:20px;color:#555;line-height:1.8;position:relative;z-index:2;">
+        Bạn đã đến giới hạn.
+        <br>
+        Vui lòng nạp VIP để tiếp tục sử dụng trang web 😆
+      </p>
+
+      <button onclick="closeVipPopup()" style="margin-top:35px;padding:15px 35px;border:none;background:#1f3c5a;color:white;border-radius:14px;font-size:18px;font-weight:bold;cursor:pointer;transition:0.3s;position:relative;z-index:2;">
+        Đóng
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    <h2>Website tìm hiểu nghề Thiết kế và Lập trình Web</h2>
+    <p>Thiết kế và lập trình bởi Đặng Hoàng Dương </p>
+    <p>người thuyết trình: Hoàng Đức Lương</p>
+  </footer>
+
+  <script>
+    function toggleProject(element) {
+      element.classList.toggle('active');
+    }
+
+    function toggleCard(element) {
+      element.classList.toggle('active');
+    }
+
+    function showVipPopup() {
+      document.getElementById('vipPopup').style.display = 'flex';
+    }
+
+    function closeVipPopup() {
+      document.getElementById('vipPopup').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
